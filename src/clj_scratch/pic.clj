@@ -1,7 +1,5 @@
 (ns clj-scratch.pic)
 
-
-
 ;; Immutability
 ;; Referential transparency
 ;; First-class functions
@@ -16,11 +14,11 @@
 ;; Destructuring
 ;; Pattern Matching
 ;; Polymorphism
+
 ;; Concurrency
 ;; Retriable
 ;; Coordinated
 ;; Asynchronous
-
 ;; Thread Safe
 ;; Delay
 ;; Promise
@@ -30,14 +28,14 @@
 ;; Agent
 ;; Ref
 ;; Channels
-;; Conventions
+
 ;; Functions
 ;; Macros
-;; Organisation with Namespaces
 ;; Interning
+
 ;; Change the language via Macros
-;; Expanding all the way down
 ;; Writing your own Macros
+
 ;; OOP
 ;; defprotocol
 ;; deftype
@@ -114,22 +112,15 @@
 
 
 ((complement empty?) "") ;; => false
-
 (apply str ["a" "b" "c"]) ;; => "abc"
-
 (map inc [1 2 3]) ;; => (2 3 4)
-
 
 (map
  (fn [[k v]] (inc v))
  {:a 1 :b 2 :c 3}) ;; => (4 3 2)
 
 (reduce + [1 2 3]) ;; => 6
-
-
 (filter even? (range 10)) ;; => (0 2 4 6 8)
-
-
 ((comp clojure.string/upper-case (partial apply str) reverse) "hello")
 
 
@@ -137,8 +128,6 @@
   (if (= i 0)
     (prn "finished")
     (recur (do (prn i) (dec i)))))
-
-
 
 (defn count-down [x]
   (if (= x 0)
@@ -188,7 +177,6 @@
 (def counter (atom 0))
 (swap! counter inc) ;; => 1
 
-
 (def counter (atom 0))
 (set-validator! counter #(even? %))
 (swap! counter inc) ;; => IllegalStateException Invalid reference state clojure\
@@ -211,11 +199,9 @@ qux ;; => #user.Qux{:kA "a", :kB "b"}
 (bar qux) ;; => "hi bar: a"
 (baz qux) ;; => "hi bar: b"
 
-
 (def qux (map->Qux {:kA "A!" :kB "B!"}))
 qux ;; => #user.Qux{:kA "A!", :kB "B!"}
 (:kB qux) ;; => "B!"
-
 
 (def my-anonymous-object
   (reify
@@ -239,8 +225,6 @@ qux ;; => #user.Qux{:kA "A!", :kB "B!"}
   (>!! c "bar") ;; => true
   ;; side effect of printing: "hey! a new value bar"
 
-
-
   (def a (chan))
   (def b (chan))
   (def c (chan))
@@ -253,7 +237,6 @@ qux ;; => #user.Qux{:kA "A!", :kB "B!"}
   (let [[result channel] (alts!! [a b c])]
     (prn "Result: " result)
     (prn "Channel: " channel))
-
 
   (def c (chan 5))
   (def v [:a :b :c :d])
