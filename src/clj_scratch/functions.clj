@@ -1,3 +1,5 @@
+(ns clj-scratch.functions)
+
 ;; Reference @daveyarwood on github (20 cool clojure functions)
 ;;; 1) [into]
 
