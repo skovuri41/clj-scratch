@@ -1,44 +1,43 @@
-(ns clj-scratch.destructing)
-
-(defn configure [val & {:keys [debug verbose]
-                        :or {debug false, verbose false}}]
-  (println "val =" val " debug =" debug " verbose =" verbose))
-
-(configure 10)
-
-(def human {:person/name "Franklin"
-            :person/age 25
-            :hobby/hobbies "running"})
-(let [{:keys [:person/name :person/age :hobby/hobbies]} human]
-  (println name "is" age "and likes" hobbies))
-
-(defn f-with-options
-  [a b & {:keys [opt1]}]
-  (println "Got" a b opt1))
-
-(f-with-options 1 2 :opt1 true)
-(f-with-options 1 2 :opt1 true)
+(ns clj-scratch.string
+  (:require [cuerdas.core :as str]))
 
 
-(def john-smith {:f-name "John"
-                 :l-name "Smith"
-                 :phone "555-555-5555"
-                 :address {:street "452 Lisp Ln."
-                           :city "Macroville"
-                           :state "Kentucky"
-                           :zip "81321"}
-                 :hobbies ["running" "hiking" "basketball"]
-                 :company "Functional Industries"
-                 :title "Sith Lord of Git"})
+(str/strip-tags "<p>just <b>some</b> text</p>")
+
+(str/strip-tags "<p>just <b>some</b> text</p>" ["p"])
+
+(str/parse-int "1.4")
+;; => 1
+
+(str/parse-int nil)
 
 
-(defn print-contact-info
-  [{:keys [f-name l-name phone company title]
-    {:keys [street city state zip]} :address
-    [fav-hobby second-hobby] :hobbies}]
-  (println f-name l-name "is the" title "at" company)
-  (println "You can reach him at" phone)
-  (println "He lives at" street city state zip)
-  (println "Maybe you can write to him about" fav-hobby "or" second-hobby))
+(str/parse-double "1.4")
 
-(print-contact-info john-smith)
+(str/parse-double nil)
+
+(str/pascal "my name is epeli")
+;; => "MyNameIsEpeli"
+
+(str/pascal :some-record)
+;; => "SomeRecord"
+
+(str/pascal nil)
+
+(str/pad "1" {:length 8})
+;; => "       1"
+
+(str/pad nil {:length 8})
+;; => nil
+
+(str/pad "1" {:length 8 :padding "0"})
+;; => "00000001"
+
+(str/pad "1" {:length 8 :padding "0" :type :right})
+;; => "10000000"
+
+(str/pad "1" {:length 8 :padding "0" :type :both})
+
+(str/strip-newlines "a\n\nb")
+
+(str/kebab :favorite-bbq-food)

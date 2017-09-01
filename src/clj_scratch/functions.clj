@@ -399,3 +399,13 @@
 
 
 (load-string "(println \"Adding 2 and 2 together...\") (+ 2 2)")
+
+
+(defn say-hello
+  "Takes name argument and say hello to the name"
+  {:added "1.0"
+   :static true}
+  [name]
+  (println (str "Hello, " name)))
+
+(meta #'say-hello)
