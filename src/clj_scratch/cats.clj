@@ -42,8 +42,6 @@
 (exc/try-on 1)
 (type (exc/try-on 1))
 
-
-
 ;; => #<Success [1]>
 
 (exc/try-on (+ 1 nil))
